@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis Results - AgroDetect AI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <h1>🌱 AgroDetect AI</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('about') }}">About</a></li>
+                <li><a href="{{ url_for('upload') }}">Upload</a></li>
+                <li><a href="{{ url_for('chatbot_page') }}">🤖 Chatbot</a></li>
+                <li><a href="{{ url_for('upload') }}" class="btn-nav">Detect Now</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h2>Analysis Results</h2>
+            <p>Here's what we found about your plant</p>
+        </div>
+    </section>
+
+    <!-- Results Section -->
+    <section class="results-section">
+        <div class="container">
+            <div class="result-card">
+                <!-- Uploaded Image -->
+                <div class="result-image">
+                    <img src="{{ url_for('static', filename=image_path.replace('static/', '')) }}" alt="Uploaded plant image">
+                </div>
+
+                <!-- Disease Information -->
+                <div class="result-info">
+                    <div class="disease-badge">
+                        {% if 'healthy' in disease.lower() %}
+                            <span class="badge-healthy">✓ Healthy</span>
+                        {% else %}
+                            <span class="badge-disease">⚠ Disease Detected</span>
+                        {% endif %}
+                    </div>
+
+                    <h3 class="disease-name">{{ disease.replace('___', ' - ').replace('_', ' ') }}</h3>
+
+                    <!-- Confidence Score -->
+                    <div class="confidence-section">
+                        <div class="confidence-label">
+                            <span>Confidence Score</span>
+                            <span class="confidence-value">{{ confidence }}%</span>
+                        </div>
+                        <div class="confidence-bar">
+                            <div class="confidence-fill" style="width: {{ confidence }}%"></div>
+                        </div>
+                    </div>
+
+                    <!-- Low Confidence Warning -->
+                    {% if low_confidence %}
+                    <div class="alert alert-warning">
+                        <h4>⚠️ Low Confidence Prediction</h4>
+                        <p><strong>Confidence: {{ confidence }}%</strong> (below {{ threshold }}% threshold)</p>
+                        <p>This prediction may not be reliable. The plant may not be in our training dataset, or the image quality may need improvement.</p>
+                        <p><strong>Supported crops:</strong> {{ supported_crops }}</p>
+                        <p><strong>Tips for better results:</strong></p>
+                        <ul style="text-align: left; margin-left: 2rem;">
+                            <li>Use bright, natural lighting</li>
+                            <li>Ensure the image is sharp and in focus</li>
+                            <li>Photograph the top surface of the leaf</li>
+                            <li>Use a plain background</li>
+                            <li>Capture clear disease symptoms</li>
+                        </ul>
+                        <p>📖 Read PHOTOGRAPHY_TIPS.md for detailed instructions.</p>
+                    </div>
+                    {% endif %}
+
+                    <!-- Treatment Recommendation -->
+                    <div class="treatment-section">
+                        <h4>💊 Treatment Recommendation</h4>
+                        <div class="treatment-box">
+                            <p>{{ treatment }}</p>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="action-buttons">
+                        <a href="{{ url_for('upload') }}" class="btn-primary">
+                            <span>🔄 Analyze Another Image</span>
+                        </a>
+                        <a href="{{ url_for('home') }}" class="btn-secondary">
+                            <span>🏠 Back to Home</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Additional Info -->
+            <div class="info-box">
+                <h4>ℹ️ Important Notes</h4>
+                <ul>
+                    <li>This AI-powered diagnosis is meant to assist, not replace professional agricultural advice</li>
+                    <li>For severe infections or uncertain cases, consult with a local agricultural expert</li>
+                    <li>Always follow safety guidelines when applying treatments or pesticides</li>
+                    <li>Monitor your plants regularly for early detection of diseases</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 AgroDetect AI. Helping farmers and gardeners protect their plants.</p>
+            <div class="footer-links">
+                <a href="{{ url_for('home') }}">Home</a>
+                <a href="{{ url_for('about') }}">About</a>
+                <a href="{{ url_for('upload') }}">Upload</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

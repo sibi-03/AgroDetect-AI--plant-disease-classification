@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgroDetect AI - Plant Disease Detection</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <h1>🌱 AgroDetect AI</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="{{ url_for('home') }}" class="active">Home</a></li>
+                <li><a href="{{ url_for('about') }}">About</a></li>
+                <li><a href="{{ url_for('upload') }}">Upload</a></li>
+                <li><a href="{{ url_for('chatbot_page') }}">🤖 Chatbot</a></li>
+                <li><a href="{{ url_for('upload') }}" class="btn-nav">Detect Now</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h2>Plant Disease Detection Made Simple</h2>
+                <p>Upload a photo of your plant and get instant disease diagnosis with treatment recommendations powered by AI</p>
+                <a href="{{ url_for('upload') }}" class="btn-primary btn-large">Get Started →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">Why Choose AgroDetect AI?</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Fast Detection</h3>
+                    <p>Get instant results in seconds. Our AI model analyzes your plant images quickly and accurately.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Accurate Results</h3>
+                    <p>Powered by MobileNetV2 deep learning, trained on 87,000+ images across 38 disease categories.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💊</div>
+                    <h3>Treatment Advice</h3>
+                    <p>Receive actionable treatment recommendations to save your plants and improve crop health.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works">
+        <div class="container">
+            <h2 class="section-title">How It Works</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Upload</h3>
+                    <p>Take a clear photo of your plant's affected leaves or areas and upload it</p>
+                </div>
+                <div class="step-arrow">→</div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Analyze</h3>
+                    <p>Our AI model processes the image and identifies the disease with confidence score</p>
+                </div>
+                <div class="step-arrow">→</div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Treat</h3>
+                    <p>Get specific treatment recommendations to address the identified disease</p>
+                </div>
+            </div>
+            <div class="cta-center">
+                <a href="{{ url_for('upload') }}" class="btn-primary">Try It Now</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 AgroDetect AI. Helping farmers and gardeners protect their plants.</p>
+            <div class="footer-links">
+                <a href="{{ url_for('home') }}">Home</a>
+                <a href="{{ url_for('about') }}">About</a>
+                <a href="{{ url_for('upload') }}">Upload</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
